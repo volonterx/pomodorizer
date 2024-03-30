@@ -42,7 +42,7 @@ Parameters:
 Responses:
 
 - `200 OK` on success
-- `400 Bad Request` if the request body is invalid
+- `422 Bad Request` if the request body is invalid
 
 ### PUT /courses/{id}
 

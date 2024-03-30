@@ -3,8 +3,8 @@ class CoursesController < ApplicationController
   before_action :get_course, only: [:show, :update, :destroy]
 
   def index
-    courses = Course.all
-    render json: courses
+    @courses = Course.all
+    render json: @courses
   end
 
   def show
@@ -12,11 +12,11 @@ class CoursesController < ApplicationController
   end
 
   def create
-    course = Course.new(course_params)
-    if course.save
-      render json: course
+    @course = Course.new(course_params)
+    if @course.save
+      render json: @course
     else
-      render json: course.errors
+      render json: { errors: @course.errors }, status: :unprocessable_entity
     end
   end
 
@@ -25,7 +25,7 @@ class CoursesController < ApplicationController
     if @course.update(course_params)
       render json: @course
     else
-      render json: @course.errors
+      render json: { errors: @course.errors }, status: :unprocessable_entity
     end
   end
 
