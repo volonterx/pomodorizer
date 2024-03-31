@@ -4,10 +4,11 @@ require 'rails_helper'
 
 RSpec.describe CoursesController, type: :controller do
   let(:parsed_response) { JSON.parse(response.body) }
+  let!(:current_user) { create(:user) }
 
   describe 'GET #index' do
     before do
-      create_list(:course, 2)
+      create_list(:course, 2, user: current_user)
       get :index
     end
 
@@ -18,7 +19,7 @@ RSpec.describe CoursesController, type: :controller do
   end
 
   describe "GET #show" do
-    let(:course) { create(:course) }
+    let(:course) { create(:course, user: current_user) }
 
     before do
       get :show, params: { id: course.id }
@@ -56,7 +57,7 @@ RSpec.describe CoursesController, type: :controller do
   end
 
   describe "PUT #update" do
-    let(:course) { create(:course) }
+    let(:course) { create(:course, user: current_user) }
 
     context "with valid params" do
       let(:new_attributes) { attributes_for(:course) }
@@ -88,7 +89,7 @@ RSpec.describe CoursesController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    let!(:course) { create(:course) }
+    let!(:course) { create(:course, user: current_user) }
 
     it "destroys the requested course" do
       expect {

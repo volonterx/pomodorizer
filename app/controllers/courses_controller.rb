@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
   before_action :get_course, only: [:show, :update, :destroy]
 
   def index
-    @courses = Course.all
+    @courses = current_user.courses
     render json: @courses
   end
 
@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.new(course_params)
+    @course = current_user.courses.build(course_params)
     if @course.save
       render json: @course
     else
@@ -21,7 +21,7 @@ class CoursesController < ApplicationController
   end
 
   def update
-    @course = Course.find(params[:id])
+    @course = current_user.courses.find(params[:id])
     if @course.update(course_params)
       render json: @course
     else
@@ -37,7 +37,7 @@ class CoursesController < ApplicationController
   private
 
   def get_course
-    @course = Course.find(params[:id])
+    @course = current_user.courses.find(params[:id])
   end
 
   def course_params
