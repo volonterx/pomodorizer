@@ -4,6 +4,9 @@ This is a REST API app for managing courses schedule.
 
 # API
 
+App run on https://pomodorizer-f6ab6d5f16aa.herokuapp.com
+No auth so far, single user.  
+
 ## Endpoints
 
 ### GET /courses
