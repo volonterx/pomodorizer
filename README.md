@@ -44,7 +44,6 @@ Parameters:
 - `duration` (body, required) - Duration of the course
 - `start_date` (body, required) - Start date of the course
 - `exipre_date` (body, optional) - Expire date of the course'
-- `priority` (body, required, uniq) - Priority of the course
 
 Responses:
 
@@ -66,7 +65,6 @@ Parameters:
 - `duration` (body, optional) - Duration of the course
 - `start_date` (body, optional) - Start date of the course
 - `exipre_date` (body, optional) - Expire date of the course'
-- `priority` (body, optional, uniq) - Priority of the course
 
 Responses:
 
@@ -87,3 +85,16 @@ Responses:
 
 - `200 OK` on success
 - `404 Not Found` if the course does not exist
+
+### PUT /courses/sort
+
+Updates the priority order of the courses.
+
+Parameters:
+
+- `ids` (body, required) - An array of course IDs in the desired order.
+
+Responses:
+
+- `200 OK` on success.
+- `404 Not Found` if any of the courses does not exist.

@@ -18,6 +18,23 @@ RSpec.describe CoursesController, type: :controller do
     end
   end
 
+  describe 'PUT #sort' do
+    let(:courses) { create_list(:course, 3, user: current_user) }
+    let(:ids) { courses.map(&:id) }
+
+    before do
+      put :sort, params: { ids: ids.reverse }
+    end
+
+    it 'returns a success response' do
+      expect(response).to be_successful
+    end
+
+    it 'updates the priority of the courses' do
+      expect(Course.order(:priority).pluck(:id)).to eq(ids.reverse)
+    end
+  end
+
   describe "GET #show" do
     let(:course) { create(:course, user: current_user) }
 

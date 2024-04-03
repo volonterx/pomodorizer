@@ -13,6 +13,6 @@ FactoryBot.define do
     duration { Faker::Number.between(from: 1, to: 12) }
     start_date { Date.today }
     expire_date { Date.today + 1.month }
-    priority { Faker::Number.between(from: 1, to: 5) }
+    sequence(:priority) { |n| n + 1 }
   end
 end
