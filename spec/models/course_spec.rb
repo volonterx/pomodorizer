@@ -11,7 +11,6 @@ RSpec.describe Course, type: :model do
     it { should validate_presence_of(:priority) }
     it { should allow_value('http://example.com').for(:url) }
     it { should_not allow_value('example.com').for(:url) }
-    it { should validate_uniqueness_of(:priority).scoped_to(:user_id) }
     it { should validate_uniqueness_of(:name).scoped_to(:user_id) }
     it { should validate_uniqueness_of(:url).scoped_to(:user_id) }
 

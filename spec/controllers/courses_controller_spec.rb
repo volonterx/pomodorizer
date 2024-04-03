@@ -64,6 +64,16 @@ RSpec.describe CoursesController, type: :controller do
       end
     end
 
+    context "with valid params and priority" do
+      let(:course_params) { attributes_for(:course).except(:priority) }
+      let!(:course) { create(:course, user: current_user, priority: 9) }
+
+      it "must set priority for new course" do
+        post :create, params: { course: course_params }
+        expect(parsed_response["priority"]).to eq(10)
+      end
+    end
+
     context "with invalid params" do
       it "renders a JSON response with errors for the new course" do
         post :create, params: { course: { name: nil } }
