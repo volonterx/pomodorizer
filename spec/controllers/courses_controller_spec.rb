@@ -54,12 +54,12 @@ RSpec.describe CoursesController, type: :controller do
 
       it "creates a new Course" do
         expect {
-          post :create, params: { course: course_params }
+          post :create, params: course_params
         }.to change(Course, :count).by(1)
       end
 
       it "renders a JSON response with the new course" do
-        post :create, params: { course: course_params }
+        post :create, params: course_params
         expect(response).to have_http_status(:ok)
       end
     end
@@ -69,7 +69,7 @@ RSpec.describe CoursesController, type: :controller do
       let!(:course) { create(:course, user: current_user, priority: 9) }
 
       it "must set priority for new course" do
-        post :create, params: { course: course_params }
+        post :create, params: course_params
         expect(parsed_response["priority"]).to eq(10)
       end
     end
@@ -90,7 +90,7 @@ RSpec.describe CoursesController, type: :controller do
       let(:new_attributes) { attributes_for(:course) }
 
       before do
-        put :update, params: { id: course.id, course: new_attributes }
+        put :update, params: { id: course.id }.merge(new_attributes)
       end
 
       it "updates the requested course" do
@@ -105,7 +105,7 @@ RSpec.describe CoursesController, type: :controller do
 
     context "with invalid params" do
       before do
-        put :update, params: { id: course.id, course: { name: nil } }
+        put :update, params: { id: course.id, name: nil }
       end
 
       it "renders a JSON response with errors for the course" do

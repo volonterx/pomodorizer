@@ -43,7 +43,7 @@ Parameters:
 - `description` (body, optional) - Description of the course
 - `duration` (body, required) - Duration of the course
 - `start_date` (body, required) - Start date of the course
-- `exipre_date` (body, optional) - Expire date of the course'
+- `expire_date` (body, optional) - Expire date of the course'
 
 Responses:
 
@@ -64,7 +64,7 @@ Parameters:
 - `description` (body, optional) - Description of the course
 - `duration` (body, optional) - Duration of the course
 - `start_date` (body, optional) - Start date of the course
-- `exipre_date` (body, optional) - Expire date of the course'
+- `expire_date` (body, optional) - Expire date of the course'
 
 Responses:
 
