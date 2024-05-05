@@ -98,3 +98,22 @@ Responses:
 
 - `200 OK` on success.
 - `404 Not Found` if any of the courses does not exist.
+
+### PUT /users/{id}
+
+Updates the current user's details.
+
+Parameters:
+
+- `id` (path, required) - ID of the user
+- `name` (body, optional) - Name of the user
+- `slots` (body, optional) - An array representing the user's schedule slots
+- `timer_duration` (body, optional) - Duration of the user's timer
+
+Responses:
+
+- `200 OK` on success
+- `422 Unprocessable Entity` if the request body is invalid
+  - Response format: `{ "errors": { "field_name": ["error message"] } }`
+- `401 Unauthorized` if the user ID does not match the current user's ID
+- `404 Not Found` if the user does not exist

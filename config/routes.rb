@@ -13,4 +13,6 @@ Rails.application.routes.draw do
       put :sort
     end
   end
+
+  resources :users, only: [:update]
 end
